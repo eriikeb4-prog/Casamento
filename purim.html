@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convite - Festa de Purim | Erik & Naira</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fcfaf5;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: #ffffff;
+            padding: 50px 40px;
+            border-radius: 16px;
+            box-shadow: 0 15px 40px rgba(11, 37, 69, 0.08);
+            max-width: 650px;
+            width: 100%;
+            text-align: center;
+            border: 1px solid #f0e6d2;
+            position: relative;
+            overflow: hidden;
+        }
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, #0B2545, #D4AF37, #0B2545);
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8em;
+            color: #0B2545;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: #D4AF37;
+            font-size: 1.6em;
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+        .verse-ref {
+            font-family: 'Playfair Display', serif;
+            color: #0B2545;
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+        .invitation {
+            background: #f4f6f9;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 35px;
+            font-size: 1.05em;
+            line-height: 1.6;
+            color: #444;
+            border-left: 4px solid #D4AF37;
+            text-align: justify;
+        }
+        .date-label {
+            color: #0B2545;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .timer {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .time-box {
+            background: #0B2545;
+            padding: 15px 20px;
+            border-radius: 10px;
+            min-width: 80px;
+            box-shadow: 0 6px 15px rgba(11, 37, 69, 0.2);
+        }
+        .time-box span {
+            display: block;
+            font-size: 2.5em;
+            font-weight: 600;
+            color: #D4AF37;
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+        .time-box small {
+            font-size: 0.8em;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        @media (max-width: 480px) {
+            .container { padding: 30px 20px; }
+            .time-box {
+                min-width: 65px;
+                padding: 12px 10px;
+            }
+            .time-box span { font-size: 1.8em; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="logo">Erik & Naira</div>
+        <h2>A Nossa Festa de Purim</h2>
+        
+        <!-- Apenas Capítulo e Versículo -->
+        <div class="verse-ref">
+            Ester 9:16-17
+        </div>
+
+        <!-- Mensagem de Convite para a Família -->
+        <div class="invitation">
+            Com o coração transbordando de alegria e gratidão, convidamos você e a sua família para celebrar conosco o nosso amor e a fidelidade de Deus. Nossa jornada nos trouxe a este momento maravilhoso, transformando nossa história em um tempo de festa, júbilo e vitória. Será uma imensa honra ter vocês ao nosso lado neste grande dia!
+        </div>
+
+        <p class="date-label">14 de Março de 2028</p>
+        
+        <!-- Cronômetro -->
+        <div class="timer" id="timer-party">
+            <div class="time-box"><span id="p-days">0</span><small>Dias</small></div>
+            <div class="time-box"><span id="p-hours">0</span><small>Horas</small></div>
+            <div class="time-box"><span id="p-mins">0</span><small>Min</small></div>
+            <div class="time-box"><span id="p-secs">0</span><small>Seg</small></div>
+        </div>
+    </div>
+
+    <script>
+        function updateTimer(targetDate) {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                document.getElementById('timer-party').innerHTML = "<h3 style='color: #0B2545; font-family: Poppins, sans-serif; margin-top: 20px;'>A nossa grande festa chegou! 🎉</h3>";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('p-days').innerText = days;
+            document.getElementById('p-hours').innerText = hours.toString().padStart(2, '0');
+            document.getElementById('p-mins').innerText = minutes.toString().padStart(2, '0');
+            document.getElementById('p-secs').innerText = seconds.toString().padStart(2, '0');
+        }
+
+        const dateParty = new Date("2028-03-14T00:00:00-04:00").getTime();
+
+        setInterval(() => {
+            updateTimer(dateParty);
+        }, 1000);
+        
+        updateTimer(dateParty);
+    </script>
+</body>
+</html>
