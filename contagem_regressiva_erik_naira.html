@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contagem Regressiva - Erik & Naira</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fcf9f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            color: #c98a96;
+            margin-bottom: 30px;
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: #2c3e50;
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+        .date-label {
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+        .timer {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        .time-box {
+            background: #fdf5f6;
+            padding: 15px;
+            border-radius: 10px;
+            min-width: 75px;
+            border: 1px solid #fae3e7;
+        }
+        .time-box span {
+            display: block;
+            font-size: 2.2em;
+            font-weight: 600;
+            color: #c98a96;
+        }
+        .time-box small {
+            font-size: 0.85em;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .divider {
+            height: 1px;
+            background: #eee;
+            margin: 30px 0;
+        }
+        .verse {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            background: #fafafa;
+            padding: 20px;
+            border-left: 4px solid #c98a96;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            color: #555;
+            font-size: 1.05em;
+            line-height: 1.6;
+            text-align: left;
+        }
+        .verse-ref {
+            display: block;
+            text-align: right;
+            font-size: 0.85em;
+            color: #999;
+            margin-top: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-style: normal;
+        }
+        @media (max-width: 480px) {
+            .time-box {
+                min-width: 60px;
+                padding: 10px;
+            }
+            .time-box span {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="logo">Erik & Naira</div>
+        
+        <h1>Casamento Civil</h1>
+        <p class="date-label">14 de Fevereiro de 2027</p>
+        <div class="timer" id="timer-civil">
+            <div class="time-box"><span id="c-days">0</span><small>Dias</small></div>
+            <div class="time-box"><span id="c-hours">0</span><small>Horas</small></div>
+            <div class="time-box"><span id="c-mins">0</span><small>Min</small></div>
+            <div class="time-box"><span id="c-secs">0</span><small>Seg</small></div>
+        </div>
+
+        <div class="divider"></div>
+
+        <h1>Cerimônia e Comemoração</h1>
+        <p class="date-label">14 de Março de 2028</p>
+        
+        <div class="verse">
+            "Os judeus... se reuniram e se dispuseram em defesa das suas vidas, e tiveram descanso dos seus inimigos; e fizeram dessa data um dia memorável, de festa e júbilo (Festa de Purim)."
+            <span class="verse-ref">— Baseado em Ester 9:16-17</span>
+        </div>
+
+        <div class="timer" id="timer-party">
+            <div class="time-box"><span id="p-days">0</span><small>Dias</small></div>
+            <div class="time-box"><span id="p-hours">0</span><small>Horas</small></div>
+            <div class="time-box"><span id="p-mins">0</span><small>Min</small></div>
+            <div class="time-box"><span id="p-secs">0</span><small>Seg</small></div>
+        </div>
+    </div>
+
+    <script>
+        function updateTimer(targetDate, prefix) {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                document.getElementById('timer-' + (prefix === 'c' ? 'civil' : 'party')).innerHTML = "<h2>O grande dia chegou! 🎉</h2>";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById(prefix + '-days').innerText = days;
+            document.getElementById(prefix + '-hours').innerText = hours.toString().padStart(2, '0');
+            document.getElementById(prefix + '-mins').innerText = minutes.toString().padStart(2, '0');
+            document.getElementById(prefix + '-secs').innerText = seconds.toString().padStart(2, '0');
+        }
+
+        // Definido para o fuso horário de Manaus (-04:00)
+        const dateCivil = new Date("2027-02-14T00:00:00-04:00").getTime();
+        const dateParty = new Date("2028-03-14T00:00:00-04:00").getTime();
+
+        setInterval(() => {
+            updateTimer(dateCivil, 'c');
+            updateTimer(dateParty, 'p');
+        }, 1000);
+        
+        // Chamada inicial para evitar 1 segundo de "0"
+        updateTimer(dateCivil, 'c');
+        updateTimer(dateParty, 'p');
+    </script>
+</body>
+</html>
