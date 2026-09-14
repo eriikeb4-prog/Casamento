@@ -9,7 +9,7 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #fcf9f9;
+            background-color: #f4f6f9; /* Fundo geral da página levemente cinza/azulado */
             color: #333;
             margin: 0;
             padding: 20px;
@@ -19,7 +19,7 @@
             min-height: 100vh;
         }
         .container {
-            background: #ffffff;
+            background: #ffffff; /* Fundo branco do quadro principal */
             padding: 40px;
             border-radius: 16px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
@@ -30,17 +30,17 @@
         .logo {
             font-family: 'Playfair Display', serif;
             font-size: 2.5em;
-            color: #c98a96;
+            color: #0B2545; /* Azul Marinho Clássico */
             margin-bottom: 30px;
         }
         h1 {
             font-family: 'Playfair Display', serif;
-            color: #2c3e50;
+            color: #0B2545; /* Azul Marinho Clássico */
             font-size: 2em;
             margin-bottom: 5px;
         }
         .date-label {
-            color: #7f8c8d;
+            color: #667;
             font-size: 1.1em;
             margin-bottom: 20px;
         }
@@ -52,21 +52,22 @@
             flex-wrap: wrap;
         }
         .time-box {
-            background: #fdf5f6;
+            background: #0B2545; /* Caixinhas em Azul Marinho */
             padding: 15px;
             border-radius: 10px;
             min-width: 75px;
-            border: 1px solid #fae3e7;
+            border: 1px solid #061528;
+            box-shadow: 0 4px 6px rgba(11, 37, 69, 0.15); /* Sombra suave para dar destaque */
         }
         .time-box span {
             display: block;
             font-size: 2.2em;
             font-weight: 600;
-            color: #c98a96;
+            color: #ffffff; /* Números em Branco */
         }
         .time-box small {
             font-size: 0.85em;
-            color: #888;
+            color: #d1dce5; /* Textos de Dias/Horas em branco levemente azulado */
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -78,12 +79,12 @@
         .verse {
             font-family: 'Playfair Display', serif;
             font-style: italic;
-            background: #fafafa;
+            background: #f8fafe; /* Fundo do texto clarinho */
             padding: 20px;
-            border-left: 4px solid #c98a96;
+            border-left: 4px solid #0B2545; /* Borda Azul Marinho */
             border-radius: 0 8px 8px 0;
             margin: 20px 0;
-            color: #555;
+            color: #445;
             font-size: 1.05em;
             line-height: 1.6;
             text-align: left;
@@ -92,7 +93,7 @@
             display: block;
             text-align: right;
             font-size: 0.85em;
-            color: #999;
+            color: #778;
             margin-top: 10px;
             font-family: 'Poppins', sans-serif;
             font-style: normal;
@@ -170,7 +171,6 @@
             updateTimer(dateParty, 'p');
         }, 1000);
         
-        // Chamada inicial para evitar 1 segundo de "0"
         updateTimer(dateCivil, 'c');
         updateTimer(dateParty, 'p');
     </script>
